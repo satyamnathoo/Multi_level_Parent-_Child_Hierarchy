@@ -3,7 +3,7 @@
 -- Create & Run the below mentioned function
 -- Output is stored in schema.stym_T2 
 
-CREATE OR REPLACE FUNCTION kamino_service.stym_fn_sap_customer_hierarchy(
+CREATE OR REPLACE FUNCTION public.stym_fn_hierarchy(
 	)
     RETURNS void
     LANGUAGE 'plpgsql'
