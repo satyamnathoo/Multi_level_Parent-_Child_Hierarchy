@@ -299,7 +299,7 @@ INSERT INTO public."stym_hierarchy_output"(level1,
             public."stym_T1"
           ) as s
     WHERE rn is null or rn = 1
-    ORDER BY level7 ,level6 ,level5 ,level4 ,level3 ,level2 ,level1 ; 
+    ORDER BY level1,level2,level3,level4,level5,level6,level7; 
 
 
 -- Final Hierarchy till level7 stored in public."stym_hierarchy_output" table
