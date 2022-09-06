@@ -1,5 +1,5 @@
 # Multi_level_Parent_Child_Hierarchy
-This sql query creates a multi level parent child hierarchy starting from root node till level7
+This sql query creates a multi level parent child hierarchy starting from root node till level7.
 ## Conditions kept in mind
 	1. Child has only 1 parent 
 	2. Cyclic Relationship is not allowed 
