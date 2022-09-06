@@ -1,16 +1,42 @@
 -- Data is fetched from schema.stym_Data consisting of 2 columns parent & child 
--- Create 2 identical table schema.stym_T1 & schema.stym_T2 consisting 7 columns from level1,level2.....level7
+-- Create a table schema.stym_hierarchy_output consisting 7 columns from level1,level2.....level7
 -- Create & Run the below mentioned function
--- Output is stored in schema.stym_T2 
+-- Output is stored in schema.stym_hierarchy_output
+-- I have used public schema
 
 CREATE OR REPLACE FUNCTION public.stym_fn_hierarchy(
-	)
-    RETURNS void
+	) 
+    RETURNS void 
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
+    
+                 
 AS $BODY$
 BEGIN 
+
+CREATE TABLE public."stym_T1"
+(
+    level1 character varying(20),
+    level2 character varying(20),
+    level3 character varying(20),
+    level4 character varying(20),
+    level5 character varying(20),
+    level6 character varying(20),
+    level7 character varying(20)
+);
+
+CREATE TABLE public."stym_T2"
+(
+    level1 character varying(20),
+    level2 character varying(20),
+    level3 character varying(20),
+    level4 character varying(20),
+    level5 character varying(20),
+    level6 character varying(20),
+    level7 character varying(20)
+);
+
 --LEVEL1 & LEVEL2
 TRUNCATE TABLE public."stym_T1";
 INSERT INTO public."stym_T1"(level1,level2)    
@@ -250,8 +276,8 @@ INSERT INTO public."stym_T1"(level7,
                     ON b1.level6::INT  = m1.parent::INT             
             ORDER BY level7 ,level6 ,level5 ,level4 ,level3 ,level2 ,level1  ASC;
 
-TRUNCATE TABLE public."stym_T2";
-INSERT INTO public."stym_T2"(level1,
+TRUNCATE TABLE public."stym_hierarchy_output";
+INSERT INTO public."stym_hierarchy_output"(level1,
                             level2,
                             level3,
                             level4,
@@ -276,7 +302,12 @@ INSERT INTO public."stym_T2"(level1,
     ORDER BY level7 ,level6 ,level5 ,level4 ,level3 ,level2 ,level1 ; 
 
 
--- Final Hierarchy till level7 stored in public."stym_T2" table 
+-- Final Hierarchy till level7 stored in public."stym_hierarchy_output" table
+
+DROP TABLE public."stym_T1";
+DROP TABLE public."stym_T2";
+
+
 END;
   
 
